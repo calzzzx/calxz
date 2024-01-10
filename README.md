@@ -1,22 +1,13 @@
 <div>
   <h1>
-    Kylian Bardini
-    &middot;
-<a href="https://kbrdn.dev">
-<img src="https://img.shields.io/badge/-Website-c56600" alt="Website"/></a>
+    Calxzz
+    
   </h1>
 </div>
-A monorepo for my personal website and projects, built with Astro and pnpm.
 
-## ⚡ [kbrdn.dev](https://kbrdn.dev)
+本项目是基于kbrdn.dev二次优化的。有点复杂，对于一个只会设计，不是很懂代码来说，做起来很费劲
 
-<a href="https://kbrdn.dev">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/kbrdn1/kbrdn.dev/main/public/og-image.jpg">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/kbrdn1/kbrdn.dev/main/public/og-image-light.jpg">
-    <img alt="Kylian Bardini - Full Stack Developer Junior" src="https://raw.githubusercontent.com/kbrdn1/kbrdn.dev/main/public/og-image.jpg" width="100%" />
-  </picture>
-</a>
+## ⚡原主题 [kbrdn.dev](https://kbrdn.dev)
 
 ### Tech Stack
 
