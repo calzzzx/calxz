@@ -1,0 +1,98 @@
+---
+title: 'MyHackount'
+slug: 'zhmyhackount'
+description: 'MERN stack app social network for developers.'
+tags:
+  - Express
+  - Redux
+  - React
+  - Node
+  - MongoDB
+  - JWT
+  - SASS
+heroImage: /projects/myhackount/myhackount-hero.png
+heroFormat: png
+heroImageAlt: MyHackount
+ogImage: 'https://kbrdn.dev/projects/myhackount/myhackount-og.png'
+ogFormat: png
+ogImageAlt: MyHackount
+url: ''
+github: 'https://github.com/kbrdn1/MyHackount'
+publishDate: 2023-03-22
+editDate: 2023-03-22
+---
+
+This is a social network for developers. It is a MERN stack app that includes authentication, profiles and forum posts.
+
+## Tech stack 🛠️
+
+### Backend:
+
+- NodeJS 🟩
+- Mongoose 🍃 
+- Express 🚂
+- JWT 🔑
+
+### Frontend
+
+- React ⚛️
+- React Router 🚦
+- SASS 💄
+- Redux 🔄
+
+## Installation 📥
+
+### Backend:
+
+#### Environment variable
+
+```sh
+# ./config/.env
+PORT=     # enter the API port (by default is 5000)
+APP_URL=http://localhost:3000
+DB_USER_PASS=<username>:<password>
+TOKEN_SECRET=     # enter a random secret token (exemple: "63e45d11c84d424")
+```
+
+#### Connect database
+
+```javascript
+// ./config/db.js
+/*
+add your path URL to connect at your Mongo DataBase
+for exemple :
+*/
+'mongodb+srv://' + process.env.DB_USER_PASS + '@cluster0.t023j84.mongodb.net/<dbname>'
+// or
+;('mongodb://localhost:27017/<dbname>')
+```
+
+### Frontend
+
+#### Environment variable
+
+```sh
+# ./app/.env
+REACT_APP_API_URL=http://localhost:<API port>
+```
+
+Go to the folder `data` and adding the `post.json` and `users.json` to Mongo DataBase.
+
+## Run App 🏁
+
+### Backend
+
+```sh
+# ./(root_dir)
+npm i
+npm start
+```
+
+### Frontend
+
+```sh
+cd app
+# ./app
+npm i
+npm start
+```

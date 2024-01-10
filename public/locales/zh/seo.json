@@ -1,0 +1,13 @@
+{
+  "titleTemplate": "%s - calzz | Full Stack Designer",
+  "defaultTitle": "calzz | Full Stack Designer",
+  "defaultOgTitle": "calzz | Full Stack Designer",
+  "ogTitle": "calzz | Full Stack Designer",
+  "defaultDescription": "Hello, I'm calzz, Full Stack Designer based in China. I am passionate about IT and the discovery of new technologies.",
+  "ogDescription": "Hello, I'm calzz, Full Stack Designer based in China. I am passionate about IT and the discovery of new technologies.",
+  "defaultOgImage": "https://kbrdn.dev/og-image.jpg",
+  "ogImage": "https://kbrdn.dev/og-image.jpg",
+  "defaultOgImageAlt": "{{title}}",
+  "ogImageAlt": "{{title}}, ??",
+  "keywords": "calzz, Designer, Full Stack,Virtual Immersion, Astro, Photographer, Illustrator, Midjourney, Editor"
+}

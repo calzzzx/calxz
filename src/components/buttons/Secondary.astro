@@ -1,0 +1,47 @@
+---
+import { localizePath } from 'astro-i18next'
+import { SendMail } from 'iconoir-react'
+
+export interface Props {
+  url?: string
+  icon?: boolean
+  ext?: boolean
+}
+
+const { url, icon, ext } = Astro.props as Props
+---
+
+{
+  url ? (
+    <a
+      href={ext ? url : localizePath(url)}
+      target={ext ? '_blank' : '_self'}
+      class="flex items-center gap-[10px] text-white hover:border-grey-2 border border-black-3 rounded-[6px] text-[14px] px-[24px] py-[12px] group transition-all hover:shadow-holo"
+    >
+      {icon && (
+        <SendMail
+          width={20}
+          height={20}
+          strokeWidth="1.2"
+          className="group-hover:rotate-[-10deg] transition-all"
+        />
+      )}
+      <slot />
+    </a>
+  ) : (
+    <a
+      id="no-link"
+      class="flex cursor-pointer items-center gap-[10px] text-white hover:border-grey-2 border border-black-3 rounded-[6px] text-[14px] px-[24px] py-[12px] group transition-all"
+    >
+      {icon && (
+        <SendMail
+          width={20}
+          height={20}
+          strokeWidth="1.2"
+          className="group-hover:rotate-[-10deg] transition-all"
+        />
+      )}
+      <slot />
+    </a>
+  )
+}

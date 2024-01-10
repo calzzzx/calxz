@@ -1,0 +1,149 @@
+---
+import Base from "@app/layouts/Articles.astro";
+import Contact from "@components/sections/Contact.astro";
+import Tile from "@components/cards/Tile.astro";
+import CTABtn from "@components/buttons/CTA.astro";
+import BtnSecondary from "@components/buttons/Secondary.astro";
+import { ArrowLeft } from "iconoir-react";
+import { Image,Picture } from "astro:assets";
+import i18n, { changeLanguage, setDefaultNamespace, t } from "i18next";
+import { localizePath } from "astro-i18next";
+import { getArticles } from "@app/utils";
+import { motion } from "framer-motion";
+import Container from "@app/components/Container.astro";
+import Label from "@app/components/ui/label.astro";
+import authorimage from "@app/assets/images/mario.jpg";
+import { authors } from "@app/data/authors";
+import type { Category } from "@app/data/category";
+import { categories } from "@app/data/category";
+import { getFormattedDate } from "@app/utilsone/all";
+
+changeLanguage("zh");
+
+setDefaultNamespace("blogs");
+const content = {
+    title: t("title"),
+    contactDescription: t("home:contactDescription"),
+    contactCTA: t("home:contactCTA"),
+    CTA: t("CTA"),
+    more: t("more"),
+};
+
+export async function getStaticPaths() {
+    const lang = i18n.language;
+    const projectsArticles = await getArticles("blogs", lang);
+    return projectsArticles.map(entry => {
+        return {
+            params: { slug: entry.slug },
+            props: { entry },
+        };
+    });
+}
+const { entry } = Astro.props;
+const projects = await getArticles("blogs", i18n.language, 2, entry.slug);
+const { Content,remarkPluginFrontmatter } = await entry.render();
+
+
+const category = categories.find(
+  (item) => item.slug === entry.data.category
+) as Category;
+---
+
+<Base
+  title={entry.data.title}
+
+  ogDescription={entry.data.description}
+><Container>
+  <div class="max-w-screen-md mx-auto">
+    <div class="text-center">
+      <Label theme={category.color}>{category.title}</Label>
+    </div>
+
+    <h1
+      class="mt-2 mb-3 text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
+      {entry.data.title}
+    </h1>
+
+    <div class="flex justify-center mt-3 space-x-3 text-gray-500">
+      <div class="flex items-center gap-3">
+        <div class="relative flex-shrink-0 w-10 h-10">
+          {
+            authorimage && (
+              <Image
+                src={authorimage}
+                alt="Author Photo"
+                width={80}
+                height={80}
+                loading="eager"
+                class="rounded-full"
+              />
+            )
+          }
+        </div>
+
+        <div>
+          <p class="text-gray-800 dark:text-gray-400">
+            {authors.name}
+          </p>
+          <div class="flex items-center space-x-2 text-sm">
+            <time
+              class="text-gray-500 dark:text-gray-400"
+              datetime={entry.data.publishDate}>
+              {getFormattedDate(entry.data.publishDate)}
+            </time>
+            <span>
+              · {Math.round(remarkPluginFrontmatter?.estReadingTime) || "5"} min
+              read
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Container>
+
+<!-- <div
+  class="relative z-0 max-w-screen-lg mx-auto overflow-hidden lg:rounded-lg aspect-video">
+  {
+    entry.data.image && (
+      <Picture
+        src={entry.data.image}
+        widths={[200, 400, 800]}
+        sizes="(max-width: 640px) 90vw, 480px"
+
+        width={1024}
+        height={576}
+        alt="Thumbnail"
+        loading="eager"
+        class="w-full"
+      />
+    )
+  }
+</div> -->
+
+<Container>
+  <article class="max-w-screen-md mx-auto">
+    <div
+      class="mx-auto my-3 prose prose-base dark:prose-invert prose-a:text-blue-600">
+      <Content />
+
+      <div class="flex flex-wrap items-center w-full gap-3 md:w-auto">
+        {
+          entry.data.tags.map((tag) => (
+            <span class="text-sm text-gray-500">#{tag}</span>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="flex justify-center mt-7 mb-7">
+      <a
+        href="/blogs"
+        class="px-5 py-3 text-sm text-blue-600 transition rounded-md dark:text-blue-500 bg-blue-50 hover:bg-blue-100">
+        ← View all posts
+      </a>
+    </div>
+  </article>
+</Container>
+  <Contact description={content.contactDescription} Btn={content.contactCTA} />
+</Base>

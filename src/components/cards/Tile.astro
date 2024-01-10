@@ -1,0 +1,36 @@
+---
+import { localizePath } from 'astro-i18next'
+// import { Image } from '@astrojs/image/components'
+import { Image } from 'astro:assets';
+
+export interface Props {
+  title: string
+  hero: string
+  heroFormat: string
+  heroAlt: string
+  url: string
+  ext?: boolean
+}
+
+const { title, hero, heroAlt, heroFormat, url, ext } = Astro.props as Props
+---
+
+<a
+  href={ext ? url : localizePath(url)}
+  class="p-[4px] overflow-hidden"
+  target={ext ? '_blank' : '_self'}
+>
+  <div
+    class="flex flex-col p-[12px] gap-[6px] rounded-[6px] hover:bg-black-2 h-full w-fit transition-all"
+  >
+    <Image
+      src={hero}
+      width={200}
+      height={150}
+      alt={heroAlt}
+      format={heroFormat}
+      class="rounded-[6px]"
+    />
+    <p class="text-white text-[14px]">{title}</p>
+  </div>
+</a>

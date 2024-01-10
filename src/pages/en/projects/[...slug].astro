@@ -1,0 +1,123 @@
+---
+import Base from "@app/layouts/Articles.astro";
+import Contact from "@components/sections/Contact.astro";
+import Tile from "@components/cards/Tile.astro";
+import CTABtn from "@components/buttons/CTA.astro";
+import BtnSecondary from "@components/buttons/Secondary.astro";
+import { ArrowLeft } from "iconoir-react";
+import { Image } from "astro:assets";
+import i18n, { changeLanguage, setDefaultNamespace, t } from "i18next";
+import { localizePath } from "astro-i18next";
+import { getArticles } from "@app/utils";
+import { motion } from "framer-motion";
+
+changeLanguage("en");
+
+setDefaultNamespace("projects");
+const content = {
+    title: t("title"),
+    contactDescription: t("home:contactDescription"),
+    contactCTA: t("home:contactCTA"),
+    CTA: t("CTA"),
+    more: t("more"),
+};
+export async function getStaticPaths() {
+    const lang = i18n.language;
+    const projectsArticles = await getArticles("projects", lang);
+    return projectsArticles.map(entry => {
+        return {
+            params: { slug: entry.slug },
+            props: { entry },
+        };
+    });
+}
+const { entry } = Astro.props;
+const projects = await getArticles("projects", i18n.language, 2, entry.slug);
+const { Content } = await entry.render();
+---
+
+<Base
+  title={entry.data.title}
+  ogImage={entry.data.ogImage}
+  ogImageAlt={entry.data.ogImageAlt}
+  ogDescription={entry.data.description}
+>
+  <motion.a
+    client:load
+    href={localizePath('/projects')}
+    className="text-grey-1 group hover:text-white text-[14px] ml-[-4px] font-semibold flex items-center gap-[8px] hover:gap-[10px] pb-[24px] duration-300 cursor-pointer"
+    initial={{ opacity: 0, x: 30 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ delay: 0.3, duration: 0.7, ease: 'easeOut' }}
+  >
+    <ArrowLeft
+      width={20}
+      height={20}
+      strokeWidth="1.2"
+      className="group-hover:text-accent duration-300"
+    />
+    {content.title}
+  </motion.a>
+  <div class="flex items-center gap-[16px] pb-[40px]">
+    <h1 class="text-white font-semibold flex items-center h-[56px] text-[48px]">
+      {entry.data.title}
+    </h1>
+  </div>
+  <Image
+    src={entry.data.heroImage}
+    width={840}
+    height={630}
+    alt={entry.data.heroImageAlt}
+    format={entry.data.heroFormat}
+    class="w-full rounded-[6px]"
+  />
+  {
+    entry.data.tags && (
+      <div class="flex gap-[10px] flex-wrap">
+        {entry.data.tags.map(tag => (
+          <p class="text-grey-1 w-fit h-fit border border-black-3 rounded-[6px] flex text-[10px] py-[4px] px-[12px]">
+            {tag}
+          </p>
+        ))}
+      </div>
+    )
+  }
+  <section class="text-grey-1 text-[16px] pt-[16px]">
+    <div class="prose">
+      <Content />
+    </div>
+  </section>
+  <div class="flex gap-[16px]">
+    {
+      entry.data.url && (
+        <CTABtn url={entry.data.url} ext>
+          {content.CTA}
+        </CTABtn>
+      )
+    }
+    {
+      entry.data.github && (
+        <BtnSecondary url={entry.data.github} ext>
+          Github
+        </BtnSecondary>
+      )
+    }
+  </div>
+  <section class="flex flex-col gap-[20px] py-[40px]">
+    <h2 class="font-semibold text-[20px] text-white">{content.more}</h2>
+    <div class="w-full grid grid-flow-row grid-cols-0 md:grid-cols-2">
+      {
+        projects.map(project => (
+          <Tile
+            title={project.data.title}
+            hero={project.data.heroImage}
+            heroFormat={project.data.heroFormat}
+            heroAlt={project.data.heroImageAlt}
+            url={'/projects/' + project.slug}
+          />
+        ))
+      }
+    </div>
+  </section>
+  <Contact description={content.contactDescription} Btn={content.contactCTA} />
+</Base>

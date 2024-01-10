@@ -1,0 +1,42 @@
+---
+import { changeLanguage, setDefaultNamespace, t } from "i18next";
+import Base from "@layouts/Base.astro";
+import CTABtn from "@components/buttons/CTA.astro";
+import Contact from "@components/sections/Contact.astro";
+
+changeLanguage("en");
+
+setDefaultNamespace("blogs");
+const content = {
+    title: t("title"),
+    htitle: t("htitle"),
+    description: t("description"),
+    sorry: t("sorry"),
+    btn: t("btn"),
+    btn2: t("btn2"),
+    ogImage: t("ogImage"),
+    ogImageAlt: t("ogImageAlt"),
+    contactDescription: t("home:contactDescription"),
+    contactCTA: t("home:contactCTA"),
+};
+---
+
+<Base
+  title={content.title}
+  ogDescription={content.description}
+  ogImage={content.ogImage}
+  ogImageAlt={content.ogImageAlt}
+>
+  <header class="w-full text-white flex flex-col md:px-[12px] gap-[24px]">
+    <h1 class="text-[48px] font-semibold">
+      {content.htitle}
+    </h1>
+    <p class="text-[16px]">{content.description}</p>
+    <p class="text-[16px]">{content.sorry}</p>
+    <div class="flex gap-[16px] pt-[6px]">
+      <CTABtn url="/projects">{content.btn}</CTABtn>
+      <CTABtn url="/stack">{content.btn2}</CTABtn>
+    </div>
+  </header>
+  <Contact description={content.contactDescription} Btn={content.contactCTA} />
+</Base>

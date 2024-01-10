@@ -1,0 +1,72 @@
+.prose {
+  @apply text-grey-1;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  a,
+  th {
+    @apply text-white;
+  }
+
+  a {
+    @apply hover:text-accent;
+  }
+
+  p,
+  em,
+  strong,
+  blockquote,
+  ul,
+  ol,
+  dl,
+  table,
+  pre,
+  td,
+  tr,
+  #definition-list {
+    @apply text-grey-1;
+  }
+
+  blockquote {
+    @apply bg-grey-3;
+    @apply border-l-accent;
+  }
+
+  code {
+    @apply bg-grey-3;
+    @apply text-accent;
+    @apply px-[4px];
+    @apply py-[2px];
+    @apply rounded-[4px];
+  }
+  pre {
+    @apply md:w-full;
+    @apply w-fit;
+    @apply lg:min-w-[500px];
+    @apply min-w-[300px];
+    @apply border;
+    @apply border-grey-3;
+  }
+
+  pre code span,
+  pre code {
+    @apply bg-transparent;
+  }
+
+  li::marker {
+    @apply text-white;
+  }
+
+  td,
+  tr {
+    @apply border-grey-1;
+  }
+
+  sup a {
+    @apply text-accent;
+  }
+}

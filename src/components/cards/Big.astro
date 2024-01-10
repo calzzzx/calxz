@@ -1,0 +1,67 @@
+---
+import { localizePath } from 'astro-i18next'
+// import { Image } from '@astrojs/image/components'
+import { Image } from 'astro:assets';
+
+export interface Props {
+  title: string
+  description: string
+  tags?: string[]
+  hero: string
+  heroFormat: string
+  heroAlt: string
+  url: string
+  ext?: boolean
+}
+
+const { title, description, tags, hero, heroAlt, heroFormat, url, ext } =
+  Astro.props as Props
+let items = []
+tags?.map(tag => items.push(tag))
+var more = items.length - 2
+---
+
+<a
+  href={ext ? url : localizePath(url)}
+  class="p-[4px] overflow-hidden md:w-full m-auto"
+  target={ext ? '_blank' : '_self'}
+>
+  <div
+    class="flex flex-col sm:flex-row p-[12px] gap-[20px] rounded-[6px] hover:bg-black-2 h-full transition-all"
+  >
+    <Image
+      src={hero}
+      width={400}
+      height={300}
+      alt={heroAlt}
+      format={heroFormat}
+      class="rounded-[6px] sm:w-[200px] sm:h-[150px] mx-auto sm:mx-0"
+    />
+    <div
+      class="flex flex-col gap-[6px] text-[14px] max-w-[400px] mx-auto sm:mx-0 sm:w-full justify-between"
+    >
+      <div class="flex flex-col gap-[4px]">
+        <p class="text-white">{title}</p>
+        <p class="text-grey-1 flex">{description}</p>
+      </div>
+      <div class="flex gap-[6px] flex-wrap">
+        {
+          items
+            .splice(0, 2)
+            .map(tag => (
+              <p class="text-grey-1 w-fit h-fit border border-black-3 rounded-[6px] flex text-[10px] py-[4px] px-[12px]">
+                {tag}
+              </p>
+            ))
+        }
+        {
+          more > 0 && (
+            <p class="text-grey-1 w-fit h-fit border border-black-3 rounded-[6px] flex text-[10px] py-[4px] px-[12px]">
+              +{more}
+            </p>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</a>

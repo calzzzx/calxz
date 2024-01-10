@@ -1,0 +1,18 @@
+{
+  "title": "Contact",
+  "htitle": "Contact 🙋🏽",
+  "description": "Are you looking for a developer ? You have a project ? You have a question ? Do not hesitate to contact me !",
+  "hdescription": "Are you looking for a developer ? You have a project ? You have a question ? Do not hesitate to contact me !",
+  "ogImage": "https://kbrdn.dev/contact/contact-og.png",
+  "ogImageAlt": "Contact",
+  "ftitle": "Send a message",
+  "CTA": "See my resume",
+  "CTAUrl": "/resume",
+  "Btn": "E-mail",
+  "BtnUrl": "mailto:kylianb1@icloud.com",
+  "name": "Your name",
+  "email": "your@email.com",
+  "subject": "Subject",
+  "message": "Your message",
+  "submit": "Send now"
+}

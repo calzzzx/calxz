@@ -1,0 +1,34 @@
+---
+import { changeLanguage, setDefaultNamespace, t } from "i18next";
+import { localizePath } from "astro-i18next";
+import BtnCTA from "@components/buttons/CTA.astro";
+import BtnSecondary from "@components/buttons/Secondary.astro";
+import NotFound from "@layouts/NotFound.astro";
+
+changeLanguage("zh");
+
+setDefaultNamespace("404");
+const content = {
+    title: t("title"),
+    htitle: t("htitle"),
+    description: t("description"),
+    text: t("text"),
+    home: t("home"),
+    back: t("back"),
+};
+---
+
+<NotFound title={content.title} description={content.description}>
+  <h1 class="text-[48px] font-semibold text-white">{content.htitle}</h1>
+  <p class="text-[16px] text-grey-1">{content.text}</p>
+  <div class="flex gap-[16px]">
+    <BtnCTA url={'/'}>{content.home}</BtnCTA>
+    <BtnSecondary>{content.back}</BtnSecondary>
+  </div>
+  <script>
+    const back = document.getElementById('no-link')
+    back?.addEventListener('click', () => {
+      window.history.back()
+    })
+  </script>
+</NotFound>

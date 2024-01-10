@@ -1,0 +1,436 @@
+---
+import { t, setDefaultNamespace } from 'i18next'
+import { localizePath } from 'astro-i18next'
+import { getPath, getPathname, getLang } from '@app/utils'
+
+const path = getPath(Astro.request.url)
+const currentPath = getPathname(Astro.request.url)
+const currentLanguage = getLang()
+
+setDefaultNamespace('nav')
+const content = {
+  job: t('job'),
+  spec: t('spec'),
+  thirdtag:t('thirdtag'),
+  resources: t('resources'),
+  social: t('social'),
+  explore: t('explore'),
+  projects: t('projects'),
+  blogs: t('blogs'),
+  hire: t('hire'),
+  skills: t('skills'),
+  stack: t('stack'),
+  now: t('now'),
+  resume: t('resume'),
+  languages: t('languages'),
+  new: t('new'),
+  inprogress: t('inprogress'),
+}
+
+import {
+  Menu,
+  Compass,
+  Repository,
+  Edit,
+  BrainElectricity,
+  Wrench,
+  LeaderboardStar,
+  AppleImac2021Side,
+  GitHub,
+  Twitter,
+  LinkedIn,
+  JournalPage,
+  Translate,
+  NavArrowLeft,
+} from 'iconoir-react'
+
+import { Image } from 'astro:assets';
+import profilePicture from '@public/me.jpg'
+import enFlag from '@public/flags/en.svg'
+import zhFlag from '@public/flags/cn.svg'
+import { motion } from 'framer-motion'
+---
+
+<nav
+  class="bg-black-1 w-full fixed flex items-center justify-between border-b border-black-3 text-grey-1 p-[24px] xl:hidden z-10 bg-opacity-90 backdrop-filter backdrop-blur-lg"
+>
+  <a
+    href={localizePath('/')}
+    class="flex gap-[12px] hover:opacity-80 duration-200 ease-out"
+  >
+    <Image
+      src={profilePicture}
+      width={75}
+      height={75}
+      class="rounded-full w-[40px] h-[40px]"
+      alt="profile-picture"
+    />
+    <div class="flex flex-col text-[14px]">
+      <p class="font-medium text-white">Calzzx</p>
+      <div class="w-full h-[22px] flex flex-col overflow-hidden">
+        <motion.div
+          client:load
+          className="flex flex-col gap-[2px]"
+          animate={{ y: [0, -22] }}
+          transition={{
+            from: 0,
+            duration: 0.7,
+            type: 'tween',
+            repeat: 999999,
+            repeatType: 'mirror',
+            ease: 'easeInOut',
+            repeatDelay: 3,
+          }}
+        >
+          <span>{content.job}</span>
+          <!-- <span>{content.spec}</span> -->
+          <span>{content.thirdtag}</span>
+        </motion.div>
+      </div>
+    </div>
+  </a>
+  <div
+    id="nav-btn"
+    class="bg-black-2 w-[36px] h-[36px] flex items-center justify-center border border-black-3 rounded-[6px]"
+  >
+    <Menu
+      className="group-hover:rotate-[10deg] transition-all hover:text-white cursor-pointer"
+      width={20}
+      height={20}
+      strokeWidth="2"
+    />
+  </div>
+</nav>
+<div id="nav-focus" class="fixed bg-black-1 w-full h-full opacity-90 hidden"></div>
+<nav
+  id="nav"
+  class="bg-black-2 fixed overflow-y-scroll overflow-x-hidden flex flex-col gap-[40px] h-full border-r border-black-3 text-grey-1 py-[40px] px-[24px] w-[255px] xl:w-fit xl:visible -translate-x-full xl:-translate-x-0 duration-300 ease-out"
+>
+  <a
+    href={localizePath('/')}
+    class="flex gap-[12px] hover:opacity-80 duration-200 ease-out"
+  >
+    <Image
+      src={profilePicture}
+      width={75}
+      height={75}
+      class="rounded-full w-[40px] h-[40px]"
+      alt="profile-picture"
+    />
+    <div class="flex flex-col text-[14px]">
+      <p class="font-medium text-white">Calzzx</p>
+      
+      <div class="w-[120%] h-[22px] flex overflow-hidden">
+        <motion.div
+          client:load
+          className="flex flex-col gap-[2px]"
+          animate={{ y: [0,-22] }}
+          transition={{
+            from: 0,
+            duration: 0.7,
+            type: 'tween',
+            repeat: 999999,
+            repeatType: 'mirror',
+            ease: 'easeInOut',
+            repeatDelay: 3,
+          }}
+        >
+          <span>{content.job}</span>
+          <!-- <span>{content.spec}</span> -->
+          <span>{content.thirdtag}</span>
+        </motion.div>
+      </div>
+
+      <!-- 没有做出轮播效果，遂放弃 -->
+      <!-- <div class="w-[120%] h-[22px] flex overflow-hidden">
+        <motion.div
+          client:load
+        >
+          <motion.div
+            initial={{ y: 0, opacity: 1 }}
+            animate={{ y: -22, opacity: 0 }}
+            transition={{ duration: 2 }}
+            variants={{
+              hidden: {},
+              visible: { y: [-22, 0], opacity: [0, 1] }
+            }}
+          >
+          <span>{content.job}</span>
+          </motion.div>
+          <motion.div
+            initial={{ y: -22, opacity: 0 }}
+            animate={{ y: -44, opacity: 1 }}
+            transition={{ duration: 2 }}
+            variants={{
+              hidden: {},
+              visible: { y: [-44, -22], opacity: [0, 1] }
+            }}
+          >
+          <span>{content.spec}</span>
+          </motion.div>
+          <motion.div
+            initial={{ y: -22, opacity: 0 }}
+            animate={{ y: -44, opacity: 1 }}
+            transition={{ duration: 2 }}
+            variants={{
+              hidden: {},
+              visible: { y: [-44, -22], opacity: [0, 1] }
+            }}
+          >
+          <span>{content.thirdtag}</span>
+          </motion.div>
+        </motion.div>
+      </div> -->
+    </div>
+  </a>
+  <div class="flex flex-col gap-[32px] w-full text-[14px] font-medium">
+    <div class="flex flex-col gap-[2px] w-full">
+      <a href={localizePath('/')}>
+        <div
+          class={(currentPath == ''
+            ? 'border border-grey-2 bg-black-3 text-white '
+            : '') +
+            'flex gap-[10px] items-center w-full rounded-[6px] px-[12px] py-[8px] hover:text-white duration-150 ease-out group'}
+        >
+          <Compass
+            className="group-hover:rotate-[10deg] transition-all group-hover:text-accent"
+            width={20}
+            height={20}
+            strokeWidth="1.6"
+          />
+          {content.explore}
+        </div>
+      </a>
+      <a href={localizePath('/projects')}>
+        <div
+          class={(currentPath.includes('projects')
+            ? 'border border-grey-2 bg-black-3 text-white '
+            : '') +
+            'relative flex gap-[10px] items-center w-full rounded-[6px] px-[12px] py-[8px] hover:text-white duration-150 ease-out group'}
+        >
+          <Repository
+            className="group-hover:rotate-[10deg] transition-all group-hover:text-accent"
+            width={20}
+            height={20}
+            strokeWidth="1.6"
+          />
+          {content.projects}
+        </div>
+      </a>
+      <a href={localizePath('/blogs')}>
+        <div
+          class={(currentPath.includes('blogs')
+            ? 'border border-grey-2 bg-black-3 text-white '
+            : '') +
+            'relative flex gap-[10px] items-center w-full rounded-[6px] px-[12px] py-[8px] hover:text-white duration-150 ease-out group'}
+        >
+          <Edit
+            className="group-hover:rotate-[10deg] transition-all group-hover:text-accent"
+            width={20}
+            height={20}
+            strokeWidth="1.6"
+          />
+          {content.blogs}
+          <span
+            class={(currentPath.includes('blogs')
+              ? 'text-white border-white bg-black-3 '
+              : 'text-grey-1 border-black-3 bg-black-2 ') +
+              'absolute top-1/2 -translate-y-1/2 right-2 text-[8px] group-hover:border-accent group-hover:text-white uppercase px-[6px] py-[3px] border rounded-[6px] font-semibold transition-all'}
+          >
+            {content.inprogress}
+          </span>
+        </div>
+      </a>
+      <a href={localizePath('/contact')}>
+        <div
+          class={(currentPath.includes('contact')
+            ? 'border border-grey-2 bg-black-3 text-white '
+            : '') +
+            'flex relative gap-[10px] items-center w-full rounded-[6px] px-[12px] py-[8px] hover:text-white duration-150 ease-out group'}
+        >
+          <BrainElectricity
+            className="group-hover:rotate-[10deg] transition-all group-hover:text-accent"
+            width={20}
+            height={20}
+            strokeWidth="1.6"
+          />
+          {content.hire}
+        </div>
+      </a>
+    </div>
+    <div class="flex flex-col gap-[2px] w-full text-[14px]">
+      <div class="ml-[12px]">
+        <p class="font-medium text-grey-1 text-[10px]">
+          {content.resources}
+        </p>
+      </div>
+      <a href={localizePath('/skills')}>
+        <div
+          class={(currentPath.includes('skills')
+            ? 'border border-grey-2 bg-black-3 text-white '
+            : '') +
+            'flex gap-[10px] items-center w-full rounded-[6px] px-[12px] py-[8px] hover:text-white duration-150 ease-out group'}
+        >
+          <LeaderboardStar
+            className="group-hover:rotate-[10deg] transition-all group-hover:text-accent"
+            width={20}
+            height={20}
+            strokeWidth="1.6"
+          />
+          {content.skills}
+        </div>
+      </a>
+      <a href={localizePath('/stack')}>
+        <div
+          class={(currentPath.includes('stack')
+            ? 'border border-grey-2 bg-black-3 text-white '
+            : '') +
+            'flex gap-[10px] items-center w-full rounded-[6px] px-[12px] py-[8px] hover:text-white duration-150 ease-out group'}
+        >
+          <Wrench
+            className="group-hover:rotate-[10deg] transition-all group-hover:text-accent"
+            width={20}
+            height={20}
+            strokeWidth="1.6"
+          />
+          {content.stack}
+        </div>
+      </a>
+      <a href={localizePath('/now')}>
+        <div
+          class={(currentPath.includes('now')
+            ? 'border border-grey-2 bg-black-3 text-white '
+            : '') +
+            'flex gap-[10px] items-center w-full rounded-[6px] px-[12px] py-[8px] hover:text-white duration-150 ease-out group'}
+        >
+          <AppleImac2021Side
+            className="group-hover:rotate-[10deg] transition-all group-hover:text-accent"
+            width={20}
+            height={20}
+            strokeWidth="1.6"
+          />
+          {content.now}
+        </div>
+      </a>
+    </div>
+    <div class="flex flex-col gap-[2px] w-full text-[14px]">
+      <div class="ml-[12px]">
+        <!-- <p class="font-medium text-grey-1 text-[10px]">SOCIAL</p> -->
+        <p class="font-medium text-grey-1 text-[10px]">{content.social}</p>
+      </div>
+      <a href="https://github.com/calzzzx" target="_blank">
+        <div
+          class="flex gap-[10px] items-center w-full rounded-[6px] px-[12px] py-[8px] hover:text-white duration-150 ease-out group"
+        >
+          <GitHub
+            className="group-hover:rotate-[10deg] transition-all group-hover:text-accent"
+            width={20}
+            height={20}
+            strokeWidth="1.6"
+          />
+          GitHub
+        </div>
+      </a>
+      <a href="https://twitter.com/calzzz0x0" target="_blank">
+        <div
+          class="flex gap-[10px] items-center w-full rounded-[6px] px-[12px] py-[8px] hover:text-white duration-150 ease-out group"
+        >
+          <Twitter
+            className="group-hover:rotate-[10deg] transition-all group-hover:text-accent"
+            width={20}
+            height={20}
+            strokeWidth="1.6"
+          />
+          Twitter
+        </div>
+      </a>
+
+      <!-- no need linkedin -->
+      <!-- <a href="https://www.linkedin.com//in/kylian-bardini-aa0528234/" target="_blank">
+        <div
+          class="flex gap-[10px] items-center w-full rounded-[6px] px-[12px] py-[8px] hover:text-white duration-150 ease-out group"
+        >
+          <LinkedIn
+            className="group-hover:rotate-[10deg] transition-all group-hover:text-accent"
+            width={20}
+            height={20}
+            strokeWidth="1.6"
+          />
+          LinkedIn
+        </div>
+      </a> -->
+    </div>
+  </div>
+  <div
+    class="flex flex-col gap-[5px] cursor-pointer w-full rounded-[6px] px-[12px] py-[8px] border border-black-3 duration-150 ease-out"
+  >
+    <div
+      id="current-language"
+      class="flex items-center justify-between hover:text-white group"
+    >
+      <div class="flex gap-[10px] items-center">
+        <Translate
+          className="group-hover:rotate-[10deg] transition-all group-hover:text-accent"
+          width={20}
+          height={20}
+          strokeWidth="1.6"
+        />
+        {content.languages}
+      </div>
+      <NavArrowLeft
+        className="group-focus:rotate-[-90deg] transition-all arrow"
+        width={20}
+        height={20}
+        strokeWidth="1.6"
+      />
+    </div>
+    <a href={localizePath(path, currentLanguage)}>
+      <div
+        id="translate"
+        class="flex gap-[10px] items-center hover:text-white group h-0 overflow-hidden duration-300 ease-out"
+      >
+        {
+          content.languages === '中文' ? (
+            <Image
+              src={enFlag}
+              alt="en_EN"
+              width={20}
+              class="rounded-sm group-hover:rotate-[10deg] transition-all border border-grey-1"
+            />
+          ) : (
+            <Image
+              src={zhFlag}
+              alt="zh_CN"
+              width={20}
+              class="rounded-sm group-hover:rotate-[10deg] transition-all border border-grey-1"
+            />
+          )
+        }
+        {content.languages === '中文' ? 'English' : '中文'}
+      </div>
+    </a>
+  </div>
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const nav = document.querySelector('#nav'),
+      navFocus = document.querySelector('#nav-focus'),
+      navBtn = document.querySelector('#nav-btn'),
+      translate = document.querySelector('#translate'),
+      currentLanguage = document.querySelector('#current-language')
+
+    const toggleNav = () => {
+      nav?.classList.toggle('-translate-x-full')
+      navFocus?.classList.toggle('hidden')
+    }
+    
+    navBtn?.addEventListener('click', toggleNav)
+    navFocus?.addEventListener('click', toggleNav)
+
+    currentLanguage?.addEventListener('click', () => {
+      translate?.classList.toggle('h-0')
+      currentLanguage?.querySelector('.arrow')?.classList.toggle('rotate-[-90deg]')
+    })
+    })
+    
+  </script>
+</nav>

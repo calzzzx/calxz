@@ -1,0 +1,42 @@
+---
+import i18next from 'i18next'
+import { getArticles } from '@app/utils'
+
+import BigCard from '@components/cards/Big.astro'
+import { motion } from 'framer-motion'
+export interface Props {
+  title: string
+  type: 'projects'
+}
+
+const { title, type } = Astro.props as Props
+const articles = await getArticles(type, i18next.language, 2)
+---
+
+<section class="md:px-[12px] w-full flex flex-col gap-[16px]">
+  <h2 class="text-white text-[14px] font-semibold uppercase">{title}</h2>
+  <div class="w-full flex flex-col gap-[16px]">
+    {
+      articles.map((article, index) => (
+        <motion.div
+          client:load
+          className="sm:h-items-md flex items-center w-full"
+          key={article.data.title}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.25 }}
+        >
+          <BigCard
+            title={article.data.title}
+            description={article.data.description}
+            hero={article.data.heroImage}
+            heroFormat={article.data.heroFormat}
+            heroAlt={article.data.heroImageAlt}
+            url={`/${type}/${article.slug}`}
+            tags={article.data.tags}
+          />
+        </motion.div>
+      ))
+    }
+  </div>
+</section>

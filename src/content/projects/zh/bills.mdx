@@ -1,0 +1,91 @@
+---
+title: 'Bills App'
+slug: 'zhbills'
+description: 'Bills App is a bill management app built to learn Vue3 and Node/Express.'
+tags:
+  - Vue
+  - Tailwind CSS
+  - ESLint
+  - Font Awesome
+  - Node
+  - Express
+  - MongoDB
+heroImage: /projects/bills/bills-hero.png
+heroFormat: png
+heroImageAlt: Bills App
+ogImage: 'https://kbrdn.dev/projects/bills/bills-og.png'
+ogFormat: png
+ogImageAlt: Bills App
+url: ''
+github: 'https://github.com/kbrdn1/Bills-App'
+publishDate: 2023-04-22
+editDate: 2023-04-22
+---
+
+Bills App is a bill management app built to learn Vue3 and Node/Express.
+
+## Tech stack 🛠️
+
+### Backend:
+
+- NodeJS 🟩
+- Express 🚂
+- Mongoose 🍃
+
+### Frontend:
+
+- Vue3 🟩
+- Vite ⚡
+- TailwindCSS 🟦
+- Font Awesome 🎨
+
+## Installation 📥
+
+### Backend:
+
+#### Install pnpm
+
+`npm install -g pnpm` or `yarn global add pnpm`
+
+#### Install dependencies
+
+```sh
+cd bill-backend-app
+pnpm install
+```
+
+#### Create a .env file in backend root directory
+
+```sh
+# ./bill-backend-app/.env
+PORT=3000
+VERSION=1.0.0
+HOST=127.0.0.1
+PORT=3000
+CORS=http://localhost:5173
+MONGO_USER=<your mongo user>
+MONGO_PASS=<your mongo password>
+MONGO_CLUSTER=<your mongo cluster>
+MONGO_DB=<your mongo db>
+```
+
+#### Run the server
+
+```sh
+pnpm start
+```
+
+### Frontend:
+
+#### Install dependencies
+
+```sh
+cd bill-frontend-app
+pnpm install
+```
+
+#### Run the app
+
+```sh
+pnpm dev
+```

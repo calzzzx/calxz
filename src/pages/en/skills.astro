@@ -1,0 +1,57 @@
+---
+import { StringMap, changeLanguage, setDefaultNamespace, t } from "i18next";
+import Base from "@layouts/Base.astro";
+import Contact from "@components/sections/Contact.astro";
+import SmallCard from "@components/cards/Small.astro";
+import { motion } from "framer-motion";
+
+changeLanguage("en");
+
+setDefaultNamespace("skills");
+const content = {
+    title: t("title"),
+    htitle: t("htitle"),
+    description: t("description"),
+    ogImage: t("ogImage"),
+    ogImageAlt: t("ogImageAlt"),
+    skills: t("skills", { returnObjects: true }),
+    contactDescription: t("home:contactDescription"),
+    contactCTA: t("home:contactCTA"),
+};
+---
+
+<Base
+  title={content.title}
+  ogImage={content.ogImage}
+  ogImageAlt={content.ogImageAlt}
+  ogDescription={content.description}
+>
+  <h1 class="text-[48px] font-semibold text-white">{content.htitle}</h1>
+  <section
+    class="w-full grid grid-flow-row grid-cols-0 md:grid-cols-2 gap-1 sm:gap-[6px]"
+  >
+    {
+      content.skills.map((item, index) => (
+        <motion.div
+          client:load
+          className="sm:h-items-sm flex items-center w-full"
+          key={item.name}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.25 }}
+        >
+          <SmallCard
+            title={item.name}
+            description={item.type}
+            icon={item.icon}
+            iconFormat="svg"
+            iconAlt={item.name}
+            url={item.url}
+            ext
+          />
+        </motion.div>
+      ))
+    }
+  </section>
+  <Contact description={content.contactDescription} Btn={content.contactCTA} />
+</Base>

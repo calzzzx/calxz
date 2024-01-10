@@ -1,0 +1,65 @@
+---
+import i18next, { changeLanguage, setDefaultNamespace, t } from "i18next";
+import { getArticles } from "@app/utils";
+import Base from "@layouts/Base.astro";
+import Contact from "@components/sections/Contact.astro";
+import BigCard from "@components/cards/Big.astro";
+import { motion } from "framer-motion";
+
+changeLanguage("zh");
+
+const projects = await getArticles("projects", i18next.language);
+setDefaultNamespace("projects");
+const content = {
+    title: t("title"),
+    htitle: t("htitle"),
+    description: t("description"),
+    ogImage: t("ogImage"),
+    ogImageAlt: t("ogImageAlt"),
+    contactDescription: t("home:contactDescription"),
+    contactCTA: t("home:contactCTA"),
+};
+---
+
+<Base
+  title={content.title}
+  description={content.description}
+  ogImage={content.ogImage}
+  ogImageAlt={content.ogImageAlt}
+>
+  <h1 class="text-[48px] font-semibold text-white">{content.htitle}</h1>
+  <!-- <iframe
+    class='w-[600px] h-[225px] md:w-full md:h-full rounded-md overflow-hidden border border-black-3'
+    src="https://github.com/sponsors/kbrdn1/card"
+    title="Sponsor kbrdn1"
+    height="225"
+    width="600"
+    style="border: 0;"
+  >
+  </iframe> -->
+  <section class="w-full flex flex-col gap-[16px]">
+    {
+      projects.map((project, index) => (
+        <motion.div
+          client:load
+          className="sm:h-items-md flex items-center w-full"
+          key={project.data.title}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.25 }}
+        >
+          <BigCard
+            title={project.data.title}
+            description={project.data.description}
+            hero={project.data.heroImage}
+            heroFormat={project.data.heroFormat}
+            heroAlt={project.data.heroImageAlt}
+            url={'/projects/' + project.slug}
+            tags={project.data.tags}
+          />
+        </motion.div>
+      ))
+    }
+  </section>
+  <Contact description={content.contactDescription} Btn={content.contactCTA} />
+</Base>

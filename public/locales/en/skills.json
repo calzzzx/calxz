@@ -1,0 +1,93 @@
+{
+  "title": "Skills",
+  "htitle": "Skills ✨",
+  "description": "Here is a list of my skills, which I was able to acquire during my studies and my professional experiences.",
+  "ogImage": "https://kbrdn.dev/skills/skills-og.png",
+  "ogImageAlt": "Skills",
+  "skills": [
+    {
+      "name": "HTML",
+      "type": "Front-end",
+      "icon": "/skills/html.svg",
+      "url": "https://www.w3schools.com/html/"
+    },
+    {
+      "name": "SASS",
+      "type": "Front-end",
+      "icon": "/skills/sass.svg",
+      "url": "https://sass-lang.com/"
+    },
+    {
+      "name": "TypeScript",
+      "type": "Back-end",
+      "icon": "/skills/typescript.svg",
+      "url": "https://www.typescriptlang.org/"
+    },
+    {
+      "name": "Vue",
+      "type": "Front-end",
+      "icon": "/skills/vue.svg",
+      "url": "https://vuejs.org/"
+    },
+    {
+      "name": "React",
+      "type": "Front-end",
+      "icon": "/skills/react.svg",
+      "url": "https://reactjs.org/"
+    },
+    {
+      "name": "Astro",
+      "type": "Front-end",
+      "icon": "/skills/astro.svg",
+      "url": "https://astro.build/"
+    },
+    {
+      "name": "Angular",
+      "type": "Front-end",
+      "icon": "/skills/angular.svg",
+      "url": "https://angular.io/"
+    },
+    {
+      "name": "Node.js",
+      "type": "Back-end",
+      "icon": "/skills/nodejs.svg",
+      "url": "https://nodejs.org/"
+    },
+    {
+      "name": "MongoDB",
+      "type": "Back-end",
+      "icon": "/skills/mongodb.svg",
+      "url": "https://www.mongodb.com/"
+    },
+    {
+      "name": "Java",
+      "type": "Back-end",
+      "icon": "/skills/java.svg",
+      "url": "https://www.java.com/"
+    },
+    {
+      "name": "PHP",
+      "type": "Front-end & Back-end",
+      "icon": "/skills/php.svg",
+      "url": "https://www.php.net/"
+    },
+    {
+      "name": "Symfony",
+      "type": "Back-end",
+      "icon": "/skills/symfony.svg",
+      "url": "https://symfony.com/"
+    },
+    {
+      "name": "MySQL",
+      "type": "Back-end",
+      "icon": "/skills/mysql.svg",
+      "url": "https://www.mysql.com/"
+    },
+    {
+      "name": "Git",
+      "type": "Outils",
+      "icon": "/skills/git.svg",
+      "url": "https://git-scm.com/"
+    }
+  ]
+}

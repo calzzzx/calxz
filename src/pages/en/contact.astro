@@ -1,0 +1,77 @@
+---
+import { changeLanguage, setDefaultNamespace, t } from "i18next";
+import Base from "@layouts/Base.astro";
+import CTABtn from "@components/buttons/CTA.astro";
+import SecondaryBtn from "@components/buttons/Secondary.astro";
+
+changeLanguage("en");
+
+setDefaultNamespace("contact");
+const content = {
+    title: t("title"),
+    description: t("description"),
+    htitle: t("htitle"),
+    hdescription: t("hdescription"),
+    CTA: t("CTA"),
+    CTAUrl: t("CTAUrl"),
+    Btn: t("Btn"),
+    BtnUrl: t("BtnUrl"),
+    ftitle: t("ftitle"),
+    name: t("name"),
+    email: t("email"),
+    subject: t("subject"),
+    message: t("message"),
+    submit: t("submit"),
+};
+---
+
+<Base forceUseDefaultOgTitle title={content.title}>
+  <header class="w-full text-white flex flex-col md:px-[12px] gap-[24px]">
+    <h1 class="text-[48px] font-semibold text-white">{content.htitle}</h1>
+    <p class="text-[16px]">{content.hdescription}</p>
+    <div class="flex gap-[16px]">
+      <CTABtn url={content.CTAUrl} ext>{content.CTA}</CTABtn>
+      <SecondaryBtn url={content.BtnUrl} icon ext>{content.Btn}</SecondaryBtn>
+    </div>
+  </header>
+  <form
+    class="flex flex-col gap-[14px] md:px-[12px]"
+    action="https://formsubmit.co/2362a66f2fa464553dc4d99e4cbe0def"
+    method="POST"
+  >
+    <h2 class="font-semibold text-[24px] text-white mb-[12px]">{content.ftitle}</h2>
+    <input type="hidden" name="_next" value="https://kbrdn.dev" />
+    <input type="hidden" name="_captcha" value="true" />
+    <div class="flex flex-col md:flex-row gap-[14px]">
+      <input
+        type="text"
+        name="name"
+        placeholder={content.name}
+        class="px-[16px] py-[12px] text-[14px] rounded-[6px] bg-black-2 hover:border-grey-2 border border-black-3 text-grey-1 placeholder:text-grey-1 focus:text-white focus:border-grey-1 w-full"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder={content.email}
+        class="px-[16px] py-[12px] text-[14px] rounded-[6px] bg-black-2 hover:border-grey-2 border border-black-3 text-grey-1 placeholder:text-grey-1 focus:text-white focus:border-grey-1 w-full"
+      />
+    </div>
+    <input
+      type="text"
+      name="_subject"
+      placeholder={content.subject}
+      class="px-[16px] py-[12px] text-[14px] rounded-[6px] bg-black-2 hover:border-grey-2 border border-black-3 text-grey-1 placeholder:text-grey-1 focus:text-white focus:border-grey-1 w-full"
+    />
+    <textarea
+      name="message"
+      placeholder={content.message}
+      class="px-[16px] py-[12px] text-[14px] rounded-[6px] bg-black-2 hover:border-grey-2 border border-black-3 text-grey-1 placeholder:text-grey-1 focus:text-white focus:border-grey-1 w-full min-h-[150px]"
+    ></textarea>
+
+    <button
+      type="submit"
+      class="w-full flex justify-center items-center font-semibold hover:border-grey-2 bg-black-2 border border-black-3 rounded-[6px] text-[14px] text-white px-[24px] py-[12px] transition-all"
+      >{content.submit}</button
+    >
+  </form>
+</Base>

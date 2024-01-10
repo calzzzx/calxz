@@ -1,0 +1,57 @@
+---
+import i18next, { changeLanguage, setDefaultNamespace, t } from "i18next";
+import { getArticles } from "@app/utils";
+import Base from "@layouts/Base.astro";
+import Contact from "@components/sections/Contact.astro";
+import SmallCard from "@components/cards/Small.astro";
+import { motion } from "framer-motion";
+
+changeLanguage("zh");
+
+const stacks = await getArticles("stack", i18next.language);
+setDefaultNamespace("stack");
+const content = {
+    title: t("title"),
+    htitle: t("htitle"),
+    description: t("description"),
+    ogImage: t("ogImage"),
+    ogImageAlt: t("ogImageAlt"),
+    contactDescription: t("home:contactDescription"),
+    contactCTA: t("home:contactCTA"),
+};
+---
+
+<Base
+  title={content.title}
+  description={content.description}
+  ogImage={content.ogImage}
+  ogImageAlt={content.ogImageAlt}
+>
+  <h1 class="text-[48px] font-semibold text-white">{content.htitle}</h1>
+  <section
+    class="w-full grid grid-flow-row grid-cols-0 md:grid-cols-2 gap-1 sm:gap-[6px]"
+  >
+    {
+      stacks.map((stack, index) => (
+        <motion.div
+          client:load
+          className="sm:h-items-sm flex items-center w-full"
+          key={stack.slug}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: index * 0.25 }}
+        >
+          <SmallCard
+            title={stack.data.title}
+            description={stack.data.description}
+            icon={stack.data.icon}
+            iconFormat={stack.data.iconFormat}
+            iconAlt={stack.data.iconAlt}
+            url={'/stack/' + stack.slug}
+          />
+        </motion.div>
+      ))
+    }
+  </section>
+  <Contact description={content.contactDescription} Btn={content.contactCTA} />
+</Base>

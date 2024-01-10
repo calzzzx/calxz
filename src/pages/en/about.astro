@@ -1,0 +1,15 @@
+---
+import { changeLanguage, setDefaultNamespace, t } from "i18next";
+import Base from "@layouts/Base.astro";
+
+changeLanguage("en");
+
+setDefaultNamespace("about");
+const content = {
+    title: t("title"),
+};
+---
+
+<Base forceUseDefaultOgTitle title={content.title}>
+  <h1 class="text-[40px] font-semibold text-white">About page ! 👋</h1>
+</Base>

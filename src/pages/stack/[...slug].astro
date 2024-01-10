@@ -1,0 +1,104 @@
+---
+import Base from "@app/layouts/Articles.astro";
+import Contact from "@components/sections/Contact.astro";
+import SmallCard from "@components/cards/Small.astro";
+import CTABtn from "@components/buttons/CTA.astro";
+import { ArrowLeft } from "iconoir-react";
+// import { Image } from '@astrojs/image/components'
+import { Image } from "astro:assets";
+import i18n, { changeLanguage, setDefaultNamespace, t } from "i18next";
+import { localizePath } from "astro-i18next";
+import { getArticles } from "@app/utils";
+import { motion } from "framer-motion";
+
+changeLanguage("zh");
+
+setDefaultNamespace("stack");
+const content = {
+    title: t("title"),
+    contactDescription: t("home:contactDescription"),
+    contactCTA: t("home:contactCTA"),
+    more: t("more"),
+};
+export async function getStaticPaths() {
+    const lang = i18n.language;
+    const stackArticles = await getArticles("stack", lang);
+    return stackArticles.map(entry => {
+        return {
+            params: { slug: entry.slug },
+            props: { entry },
+        };
+    });
+}
+const { entry } = Astro.props;
+const stacks = await getArticles("stack", i18n.language, 4, entry.slug);
+const { Content } = await entry.render();
+---
+
+<Base
+  title={entry.data.title}
+  ogImage={entry.data.ogImage}
+  ogImageAlt={entry.data.ogImageAlt}
+  ogDescription={entry.body}
+>
+  <motion.a
+    client:load
+    href={localizePath('/stack')}
+    className="text-grey-1 group hover:text-white text-[14px] ml-[-4px] font-semibold flex items-center gap-[8px] hover:gap-[10px] pb-[24px] duration-300 cursor-pointer"
+    initial={{ opacity: 0, x: 30 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ delay: 0.2, duration: 0.7, ease: 'easeOut' }}
+  >
+    <ArrowLeft
+      width={20}
+      height={20}
+      strokeWidth="1.2"
+      className="group-hover:text-accent duration-300"
+    />
+    {content.title}
+  </motion.a>
+  <div class="flex items-center gap-[16px] pb-[40px]">
+    <Image
+      src={entry.data.icon}
+      width={56}
+      height={56}
+      format={entry.data.iconFormat}
+      alt={entry.data.iconAlt}
+    />
+    <h1 class="text-white font-semibold flex items-center h-[56px] text-[48px]">
+      {entry.data.title}
+    </h1>
+  </div>
+  <Image
+    src={entry.data.heroImage}
+    width={720}
+    height={466}
+    alt={entry.data.heroImageAlt}
+    format={entry.data.heroFormat}
+    class="w-full rounded-[6px]"
+  />
+  <section class="text-grey-1 text-[16px] pt-[16px]">
+    <div class="prose">
+      <Content />
+    </div>
+  </section>
+  <CTABtn url={entry.data.url} ext>{entry.data.CTA}</CTABtn>
+  <section class="flex flex-col gap-[20px] py-[40px]">
+    <h2 class="font-semibold text-[20px] text-white">{content.more}</h2>
+    <div class="w-full grid grid-flow-row grid-cols-0 md:grid-cols-2">
+      {
+        stacks.map(stack => (
+          <SmallCard
+            title={stack.data.title}
+            description={stack.data.description}
+            icon={stack.data.icon}
+            iconFormat={stack.data.iconFormat}
+            iconAlt={stack.data.iconAlt}
+            url={'/stack/' + stack.slug}
+          />
+        ))
+      }
+    </div>
+  </section>
+  <Contact description={content.contactDescription} Btn={content.contactCTA} />
+</Base>

@@ -1,0 +1,58 @@
+---
+import { changeLanguage, setDefaultNamespace, t } from "i18next";
+import Base from "@layouts/Base.astro";
+import Header from "@components/Header.astro";
+import Section from "@components/sections/Section.astro";
+import SmallSection from "@components/sections/Small.astro";
+import Contact from "@components/sections/Contact.astro";
+
+changeLanguage("zh");
+
+setDefaultNamespace("home");
+const content = {
+    title: t("title"),
+    htitle: t("htitle"),
+    tspan: t("tspan"),
+    description: t("description"),
+    hCTA: t("hCTA"),
+    hBtn: t("hBtn"),
+    newProjects: t("newProjects"),
+    blogDescription: t("blogDescription"),
+    blogCTA: t("blogCTA"),
+    contactDescription: t("contactDescription"),
+    contactCTA: t("contactCTA"),
+    stack: t("stack"),
+    stackDescription: t("stackDescription"),
+    stackCTA: t("stackCTA"),
+};
+---
+
+<Base forceUseDefaultOgTitle title={content.title}>
+  <Header
+    title={content.htitle}
+    span={content.tspan}
+    description={content.description}
+    hCTA={content.hCTA}
+    hCTAUrl="/resume"
+    hBtn={content.hBtn}
+    hBtnUrl="mailto:kylelzzz02@icloud.com"
+  />
+  <Section title={content.newProjects} type="projects" />
+  <!-- <SmallSection
+    title="Blog"
+    type="blog"
+    description={content.blogDescription}
+    btn={content.blogCTA}
+    btnUrl="/blog"
+  /> -->
+  <section class="md:px-[12px] w-full">
+    <Contact description={content.contactDescription} Btn={content.contactCTA} />
+  </section>
+  <SmallSection
+    title={content.stack}
+    type="stack"
+    description={content.stackDescription}
+    btn={content.stackCTA}
+    btnUrl="/stack"
+  />
+</Base>

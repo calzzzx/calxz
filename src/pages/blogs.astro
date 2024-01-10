@@ -1,0 +1,64 @@
+---
+import Base from "@app/layouts/Articles.astro";
+import Contact from "@components/sections/Contact.astro";
+import Tile from "@components/cards/Tile.astro";
+import CTABtn from "@components/buttons/CTA.astro";
+import BtnSecondary from "@components/buttons/Secondary.astro";
+import { ArrowLeft } from "iconoir-react";
+import { Image } from "astro:assets";
+import i18n, { changeLanguage, setDefaultNamespace, t } from "i18next";
+import { localizePath } from "astro-i18next";
+import { getArticles } from "@app/utils";
+import { motion } from "framer-motion";
+import Container from "@app/components/Container.astro";
+import Pagetitle from "@components/pagetitle.astro";
+import Postlist from "@components/postlist.astro";
+import { latestPosts } from "@app/utilsone/content";
+import { getCollection } from "astro:content";
+
+
+
+changeLanguage("zh");
+
+setDefaultNamespace("blogs");
+const content = {
+    title: t("title"),
+    contactDescription: t("home:contactDescription"),
+    contactCTA: t("home:contactCTA"),
+    CTA: t("CTA"),
+    more: t("more"),
+};
+
+const lang = i18n.language;
+export async function getStaticPaths() {
+    const projectsArticles = await getCollection("blogs")
+    // const projectsArticles = await getArticles("blogs", lang);
+    return projectsArticles.map(entry => {
+        return {
+            params: { slug: entry.slug },
+            props: { entry },
+        };
+    });
+}
+const { entry } = Astro.props;
+// const projects = await getArticles("blogs", lang, 2, entry.slug);
+const blogs = await getCollection("blogs")
+// const { Content,remarkPluginFrontmatter } = await entry.render();
+---
+
+<Base
+title={content.title}
+  description={content.description}
+>
+<Container>
+    <Pagetitle>
+      <Fragment slot="title">博客集合</Fragment>
+      <Fragment slot="desc">这里是我写过的内容哦</Fragment>
+    </Pagetitle>
+    <contentmain>
+      <div class="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3">
+        {latestPosts.map((entry) => <Postlist post={entry} aspect="square" />)}
+      </div>
+    </contentmain>
+  </Container>
+</Base>

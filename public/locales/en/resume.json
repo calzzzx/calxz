@@ -1,0 +1,90 @@
+{
+  "title": "Resume",
+  "htitle": "Resume 📃",
+  "description": "Here is my resume, showing my career.",
+  "hdescription": "Here is my resume, showing my career. You can download it by clicking the button below. I am currently looking for a work-study program for a Master's degree in Computer Engineering over 2 years.",
+  "CTA": "Download my resume",
+  "CTAUrl": "https://kbrdn.dev/resume/EN-all.pdf",
+  "Btn": "E-mail",
+  "BtnUrl": "mailto:kylianb1@icloud.com",
+  "ogImage": "https://kbrdn.dev/resume/resume-og.png",
+  "ogImageAlt": "Resume of Kylian Bardini",
+  "education": "Education",
+  "educationContent": [
+    {
+      "title": "Metz Numeric School — Developper Full Stack - Licence",
+      "date": "oct 2022 - now",
+      "tags": [
+        "Figma",
+        "Java",
+        "Symfony",
+        "React",
+        "C#",
+        "Flutter",
+        "MongoDB",
+        "TypeScript",
+        "Node",
+        "Git",
+        "Docker",
+        "Vue"
+      ],
+      "skills": [
+        "In-depth knowledge of UI & UX Design and using Figma (mockup design).",
+        "I learned many Frameworks and programming languages ​​to develop Web App, mobile and desktop applications.",
+        "Software architecture (Oignon, MVC, CRUD, Atomic...).",
+        "Management of a project as a project manager for 1 year to obtain my diploma."
+      ]
+    },
+    {
+      "title": "CCI Longwy EESC — Web and Mobile Web Developer - BAC+2",
+      "date": "oct 2020 - jun 2022",
+      "tags": [
+        "HTML",
+        "CSS",
+        "PHP",
+        "JavaScript",
+        "SASS",
+        "Angular",
+        "JQuery",
+        "Symfony",
+        "XD",
+        "Photoshop",
+        "Ilustrator",
+        "WAMP",
+        "MySQL",
+        "Bootstrap",
+        "Git"
+      ],
+      "skills": [
+        "Basics of programming and algorithms.",
+        "Basic web languages.",
+        "Software architecture (MVC, CRUD).",
+        "Notions UI & UX Design and use of the Adobe suite (model design and graphic charter).",
+        "4 week internship at House & Garden, designing their website with Symfony."
+      ]
+    },
+    {
+      "title": "High School Jean Zay Jarny — STI2D Option SIN - BAC",
+      "date": "2018 - 2020"
+    }
+  ],
+  "experience": "Experience",
+  "experienceContent": [
+    {
+      "title": "Virtual Immersion —  Full Stack Developer on a work-study basis",
+      "date": "nov 2022 - now",
+      "tags": ["Symfony", "React", "Worpress", "MySQL", "TailwindCSS"],
+      "skills": [
+        "Build an API for file management with Symfony.",
+        "Immersion implementation in mixed reality on Wordpress.",
+        "Software architecture (Oignon, MVC, CRUD, Atomic...).",
+        "Creation of the navigation on the map of a park with React.",
+        "Creation of an E-Learning platform for industry and schools with VR modules built Symfony and React."
+      ]
+    },
+    {
+      "title": "EUROSTAMP — Production operator",
+      "date": "oct 2020 - oct 2021"
+    }
+  ]
+}

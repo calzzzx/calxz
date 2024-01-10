@@ -1,0 +1,13 @@
+{
+  "titleTemplate": "%s - Kylian Bardini | Full Stack Dev",
+  "defaultTitle": "Kylian Bardini | Full Stack Dev",
+  "defaultOgTitle": "Kylian Bardini | Full Stack Dev",
+  "ogTitle": "Kylian Bardini | Full Stack Dev",
+  "defaultDescription": "Hello, I'm Kylian Bardini, Full Stack developer based in Metz. I am passionate about IT and the discovery of new technologies.",
+  "ogDescription": "Hello, I'm Kylian Bardini, Full Stack developer based in Metz. I am passionate about IT and the discovery of new technologies.",
+  "defaultOgImage": "https://kbrdn.dev/og-image.jpg",
+  "ogImage": "https://kbrdn.dev/og-image.jpg",
+  "defaultOgImageAlt": "{{title}}",
+  "ogImageAlt": "{{title}}, ??",
+  "keywords": "Kylian Bardini, Devlopper, Développeur, Full Stack, Metz, MNS, Metz Numeric School, Virtual Immersion, Astro, JavaScript, React, Typescript, Symfony, MERN, Portfolio, Web, Mobile, Web Mobile, Formation, Projets, Projects, Site, Site Web, Application, Swift, Apple, SwiftUI, React Native, Licence, BAC, iOS, Android, Github, AI, IA, Internet, Site Internet, Blog, CV, SQL, Full JS, JS, Full JavaScript, LinkedIn, HTML, CSS, SCSS, SASS, Freelance, ENT, Entreprise, Corporation, Corp, E-Sport, IT, IoT, Framework, Compile, Compilation, Editor"
+}

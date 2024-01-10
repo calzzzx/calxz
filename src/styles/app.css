@@ -1,0 +1,69 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter-Regular.woff2') format('woff2'),
+        url('/fonts/Inter-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+};
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter-Medium.woff2') format('woff2'),
+        url('/fonts/Inter-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter-SemiBold.woff2') format('woff2'),
+        url('/fonts/Inter-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter-Bold.woff2') format('woff2'),
+        url('/fonts/Inter-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    @apply w-[5px];
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-black-2 ;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-black-3 ;
+    @apply rounded-full ;
+    @apply transition-all;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent ;
+}
+
+main {
+    background-image: url('/dots.svg');
+    background-repeat: repeat-x;
+    background-position: top;
+    background-position-y: -15px;
+    background-size: 70%;
+}
+
+@media (min-width: 1920px) {
+    html {
+        background-image: url('/dots.svg');
+        background-repeat: repeat-x;
+        background-position: bottom;
+        background-position-x: -15px;
+        background-attachment: fixed;
+        background-size: 1920px;
+    }
+}

@@ -1,0 +1,5 @@
+dist
+node_modules
+.astro/
+src/pages/fr
+src/pages/en

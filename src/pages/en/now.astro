@@ -1,0 +1,60 @@
+---
+import { changeLanguage, setDefaultNamespace, t } from "i18next";
+import Base from "@layouts/Base.astro";
+import CTABtn from "@components/buttons/CTA.astro";
+import Contact from "@components/sections/Contact.astro";
+
+changeLanguage("en");
+
+setDefaultNamespace("inprogress");
+const content = {
+    title: t("title"),
+    htitle: t("htitle"),
+    description: t("description"),
+    ogImage: t("ogImage"),
+    ogImageAlt: t("ogImageAlt"),
+    job: t("job"),
+    job2: t("job2"),
+    school: t("school"),
+    learning: t("learning"),
+    CTA: t("CTA"),
+    url: t("url"),
+    contactDescription: t("home:contactDescription"),
+    contactCTA: t("home:contactCTA"),
+};
+---
+
+<Base
+  title={content.title}
+  description={content.description}
+  ogImage={content.ogImage}
+  ogImageAlt={content.ogImageAlt}
+>
+  <div class="w-full flex flex-col gap-[24px]">
+    <header class="w-full text-white gap-[24px]">
+      <h1 class="text-[40px] font-semibold text-white">{content.htitle}</h1>
+    </header>
+    <section class="flex flex-col gap-[24px] text-grey-1">
+      <p class="text-[16px] text-white font-semibold">{content.description}</p>
+      <ul class="list-disc flex flex-col list-inside gap-[10px]">
+        <li>
+          {content.job}&nbsp;<a
+            class="text-white"
+            href="https://virtual-immersion.io/"
+            target="_blank">Virtual Immersion</a
+          >&nbsp;{content.job2}
+        </li>
+        <li>
+          {content.school}&nbsp;<a
+            class="text-white"
+            href="https://www.metz-numeric-school.fr/fr"
+            target="_blank">Metz Numeric School</a
+          >.
+        </li>
+        <li>{content.learning}</li>
+      </ul>
+      <CTABtn url={content.url}>{content.CTA}</CTABtn>
+    </section>
+  </div>
+  <Contact description={content.contactDescription} Btn={content.contactCTA} />
+</Base>

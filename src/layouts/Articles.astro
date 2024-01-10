@@ -1,0 +1,110 @@
+---
+import '@app/styles/app.css'
+import '@app/styles/markdown.scss'
+import i18next, { t, setDefaultNamespace } from 'i18next'
+import { HeadHrefLangs } from 'astro-i18next/components'
+import { SEO } from 'astro-seo'
+import { motion } from 'framer-motion'
+
+import Nav from '@components/Nav.astro'
+import Footer from '@components/Footer.astro'
+
+setDefaultNamespace('seo')
+
+export interface Props {
+  forceUseDefaultOgTitle?: boolean
+  title?: string
+  description?: string
+  ogTitle?: string
+  ogType?: 'website' | 'article'
+  ogImage?: string
+  ogImageAlt?: string
+  ogDescription?: string
+}
+
+const {
+  forceUseDefaultOgTitle = false,
+  title = t('defaultTitle') as string,
+  description = t('defaultDescription') as string,
+  ogTitle = forceUseDefaultOgTitle
+    ? (t('defaultOgTitle') as string)
+    : title ?? (t('defaultOgTitle') as string),
+  ogType = 'website',
+  ogImage = t('defaultOgImage') as string,
+  ogImageAlt = t('defaultOgImageAlt', { title: ogTitle }) as string,
+  ogDescription = description,
+} = Astro.props
+
+const lang = i18next.language
+---
+
+<!DOCTYPE html>
+<html lang={lang} class="3xl:h-full 3xl:bg-black-1">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Apple -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="telephone=yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="touch-icon-iphone.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="apple-touch-icon-152-152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180-180.png" />
+    <link rel="apple-touch-icon" sizes="167x167" href="apple-touch-icon-167-167.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="apple-touch-icon-120-120.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114-114.png" />
+    <link rel="apple-touch-icon" sizes="80x80" href="apple-touch-icon-80-80.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="apple-touch-icon-57-57.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="kbrdn.dev" />
+    <link href="startup.png" rel="apple-touch-startup-image" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <HeadHrefLangs />
+    <SEO
+      title={title}
+      description={description}
+      titleDefault={t('defaultTitle')!}
+      titleTemplate={t('titleTemplate')!}
+      openGraph={{
+        basic: {
+          title: ogTitle,
+          image: ogImage,
+          type: ogType,
+        },
+        image: {
+          alt: ogImageAlt,
+          width: 1200,
+          height: 627,
+        },
+      }}
+      twitter={{
+        card: 'summary_large_image',
+        site: '@kbrdn1',
+        creator: '@kbrdn1',
+        title: ogTitle,
+        description: ogDescription,
+        image: ogImage,
+        imageAlt: ogImageAlt,
+      }}
+    />
+  </head>
+  <body class="bg-black-1 font-body 3xl:mx-auto 3xl:w-[1920px] 3xl:h-full">
+    <Nav />
+    <main
+      class="xl:ml-[244px] md:pt-[150px] pt-[120px] lg:pt-[120px] pb-[64px] flex md:justify-center 3xl:border-r 3xl:border-black-3 bg-black-1"
+    >
+      <motion.div
+        client:load
+        className="md:w-[1024px] px-[24px] xl:px-[36p] flex flex-col gap-[24px]"
+        initial={{ opacity: 0, x: 30 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7, ease: 'easeOut' }}
+      >
+        <slot />
+      </motion.div>
+    </main>
+    <Footer />
+  </body>
+</html>

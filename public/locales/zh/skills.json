@@ -1,0 +1,27 @@
+{
+  "title": "Skills",
+  "htitle": "技能树 ✨",
+  "description": "Here is a list of my skills, which I was able to acquire during my studies and my professional experiences.",
+  "ogImage": "https://kbrdn.dev/skills/skills-og.png",
+  "ogImageAlt": "Skills",
+  "skills": [
+    {
+      "name": "Midjourney",
+      "type": "AI绘画",
+      "icon": "/skills/midjourney.svg",
+      "url": "https://astro.build/"
+    },
+    {
+      "name": "Astro",
+      "type": "Front-end",
+      "icon": "/skills/astro.svg",
+      "url": "https://astro.build/"
+    },
+    {
+      "name": "Git",
+      "type": "Outils",
+      "icon": "/skills/git.svg",
+      "url": "https://git-scm.com/"
+    }
+  ]
+}

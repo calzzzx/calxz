@@ -1,0 +1,53 @@
+---
+import i18next from 'i18next'
+import { getArticles } from '@app/utils'
+
+import CTABtn from '@components/buttons/CTA.astro'
+import SmallCard from '@components/cards/Small.astro'
+import { motion } from 'framer-motion'
+
+export interface Props {
+  title: string
+  description: string
+  btn: string
+  btnUrl: string
+  type: 'stack' | 'blog'
+}
+
+const { title, description, btn, btnUrl, type } = Astro.props as Props
+
+const stacks = await getArticles(type, i18next.language, 3)
+---
+
+<section class="md:px-[12px] w-full">
+  <div class="p-[24px] border border-black-3 rounded-[6px] flex flex-col gap-[16px]">
+    <div class="flex flex-col">
+      <h3 class="font-semibold text-white text-[14px]">{title}</h3>
+      <p class="text-grey-1 text-[14px]">{description}</p>
+    </div>
+    <div class="w-full flex flex-col gap-0">
+      {
+        stacks.map((stack, index) => (
+          <motion.div
+            client:load
+            className="sm:h-items-sm flex items-center w-full"
+            key={stack.data.title}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.25 }}
+          >
+            <SmallCard
+              title={stack.data.title}
+              description={stack.data.description}
+              icon={stack.data.icon}
+              iconFormat={stack.data.iconFormat}
+              iconAlt={stack.data.iconAlt}
+              url={'/stack/' + stack.slug}
+            />
+          </motion.div>
+        ))
+      }
+    </div>
+    <CTABtn url={btnUrl} full>{btn}</CTABtn>
+  </div>
+</section>

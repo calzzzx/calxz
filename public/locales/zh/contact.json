@@ -1,0 +1,18 @@
+{
+  "title": "contact",
+  "htitle": "联系我 🙋🏽",
+  "description": "你正在找设计师？有什么项目计划？或者有任何疑问？别犹豫，随时找我聊聊哦！",
+  "hdescription": "你正在找设计师？有什么项目计划？或者有任何疑问？别犹豫，随时找我聊聊哦！",
+  "ogImage": "https://kbrdn.dev/contact/contact-og.png",
+  "ogImageAlt": "Contact",
+  "ftitle": "发消息",
+  "CTA": "看看我的简历",
+  "CTAUrl": "/resume",
+  "Btn": "E-mail",
+  "BtnUrl": "mailto:kylelzzz02@icloud.com",
+  "name": "你的名字",
+  "email": "your@email.com",
+  "subject": "Subject",
+  "message": "Your message",
+  "submit": "现在发送"
+}

@@ -1,0 +1,10 @@
+{
+  "title": "Blog",
+  "htitle": "Blog 🎉",
+  "description": "Here is my blog, where I share my experiences, my discoveries and my projects. I also write about my journey as a developer.",
+  "sorry": "Sorry 😕, there are no articles yet...",
+  "btn": "See the projects",
+  "btn2": "See the stack",
+  "ogImage": "https://kbrdn.dev/blog/blog-og.png",
+  "ogImageAlt": "Blog"
+}
