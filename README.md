@@ -6,7 +6,13 @@
 
 我的个人博客网站。[![Built with Astro](https://astro.badg.es/v1/built-with-astro/tiny.svg)](https://astro.build)
 
-## ⚡原主题 [kbrdn.dev](https://kbrdn.dev) 
+#### ⚡原主题 [kbrdn.dev](https://github.com/kbrdn1) 
+
+### 展示效果
+
+![image](https://github.com/calzzzx/calxz/blob/main/public/itempng/Snipaste_2024-02-04_22-50-39.png)
+![image](https://github.com/calzzzx/calxz/blob/main/public/itempng/Snipaste_2024-02-04_22-51-10.png)
+![image](https://github.com/calzzzx/calxz/blob/main/public/itempng/sdddd1.jpg)
 
 ### Features
 - [x] 中英文切换
